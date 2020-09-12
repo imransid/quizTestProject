@@ -8,6 +8,8 @@ const constantDataType = {
   LOAD_QUIZES_DB: 'LOAD_QUIZES_DB',
   SAVE_RESULT: 'SAVE_RESULT',
   SAVE_RESULT_QUIZ: 'SAVE_RESULT_QUIZ',
+  LOAD_INTI_QUIZES: 'LOAD_INTI_QUIZES',
+  LOAD_ALL_RESULT: 'LOAD_ALL_RESULT',
 };
 
 export default constantDataType;

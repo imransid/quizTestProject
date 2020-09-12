@@ -30,6 +30,9 @@ const Register = () => {
     if (qustion == '' || answer == '' || option == '') {
       alert('cannot send blank feold');
     } else {
+      setqustion('');
+      setAnswer('');
+      setOption('');
       dispatch(saveQuiz(qustion, answer, option));
     }
   };

@@ -11,13 +11,16 @@ let defaultQuiz = [
 const initialState = {
   status: false,
   quiz: defaultQuiz,
+  mod: '',
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionType.LOAD_QUIZES:
+    case actionType.LOAD_INTI_QUIZES:
       return {
         ...state,
+        status: action.status,
+        mod: 'init',
       };
     case actionType.UPDATE_QUIZ:
       return {

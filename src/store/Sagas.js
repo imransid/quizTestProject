@@ -43,10 +43,7 @@ async function createNewAdmin(name, email, alllAdminData) {
     let data = [{name: name}, {email, email}];
     alllAdminData.push(data);
 
-    await AsyncStorage.setItem(
-      'transection@Data',
-      JSON.stringify(alllAdminData),
-    );
+    await AsyncStorage.setItem('admin@Data', JSON.stringify(alllAdminData));
   } catch (error) {
     console.log('async save prlm', error);
   }
@@ -64,7 +61,7 @@ async function loadAdmin() {
   }
 }
 
-async function createNewQuiz(ans, qus, option, alldata) {
+async function createNewQuiz(qus, ans, option, alldata) {
   try {
     let Quiz = [
       {
@@ -113,7 +110,7 @@ async function createNeResult(data, alldata) {
   try {
     alldata.push(data);
 
-    await AsyncStorage.setItem('quiz@Data', JSON.stringify(alldata));
+    await AsyncStorage.setItem('result@Data', JSON.stringify(alldata));
 
     return alldata;
   } catch (error) {
@@ -147,12 +144,37 @@ const save_result = function* (action) {
     console.log(err);
   }
 };
+const intQuiz = function* (action) {
+  try {
+    yield put({
+      type: actionType.LOAD_INTI_QUIZES,
+      status: true,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const initloadResultNow = function* (action) {
+  try {
+    const allResult = yield call(loadResult);
+    yield put({
+      type: actionType.SAVE_RESULT_QUIZ,
+      result: allResult,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const rootSaga = function* () {
   yield takeEvery(actionType.SAVE_RESULT, save_result);
   yield takeEvery(actionType.ADD_ADMIN, save_admin);
   yield takeEvery(actionType.SAVE_QUIZES, save_quiz);
   yield takeEvery(actionType.LOAD_QUIZES_DB, load_quiz);
+  yield takeEvery(actionType.LOAD_QUIZES, intQuiz);
+
+  yield takeEvery(actionType.LOAD_ALL_RESULT, initloadResultNow);
 };
 
 export default rootSaga;

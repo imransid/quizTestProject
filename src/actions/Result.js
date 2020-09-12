@@ -6,3 +6,9 @@ export function SaveResult(data) {
     data: data,
   };
 }
+
+export function loadResult() {
+  return {
+    type: actionType.LOAD_ALL_RESULT,
+  };
+}
